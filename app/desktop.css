@@ -1,0 +1,810 @@
+/* Desktop-only design overrides. Keep mobile presentation out of this file. */
+@media screen and (min-width: 769px) {
+  html.journal-mobile-dark-preload,
+  html.journal-mobile-dark-preload body { background: #000; color-scheme: dark; }
+  html.journal-mobile-dark-preload .loading-screen { background: #000; color: #f2f2f7; }
+
+  /* Desktop chrome now uses the same consolidated profile controls as mobile. */
+  .save-state > .app-theme-menu,
+  .save-state > .push-notification-button,
+  .save-state > .zoom-toggle-button,
+  .save-state > .saved,
+  .save-state > .saving { display: none; }
+  .save-state { justify-content: flex-end; }
+  .profile-dot {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--theme-on-header) 42%, transparent);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--theme-on-header) 13%, transparent);
+    color: var(--theme-on-header);
+    font: 700 12px/1 var(--app-font-family);
+    cursor: pointer;
+  }
+  .profile-dot:hover,
+  .profile-dot[aria-expanded="true"] {
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-accent) 18%, transparent);
+  }
+
+  .mobile-profile-backdrop {
+    position: fixed;
+    z-index: 360;
+    inset: 0;
+    display: flex !important;
+    justify-content: flex-end;
+    background: rgba(24, 22, 20, .28);
+    backdrop-filter: blur(5px);
+  }
+  .mobile-profile-menu {
+    display: flex;
+    flex-direction: column;
+    width: min(390px, 92vw);
+    height: 100dvh;
+    padding: 0;
+    border-left: 1px solid var(--line-strong);
+    background: var(--panel);
+    color: var(--ink);
+    box-shadow: -18px 0 50px rgba(24, 18, 12, .22);
+    overflow-y: auto;
+  }
+  .mobile-profile-menu > header {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 36px;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 22px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-profile-menu > header > span {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--theme-soft);
+    color: var(--theme-accent-strong);
+    font-weight: 800;
+  }
+  .mobile-profile-menu > header div { display: grid; gap: 3px; }
+  .mobile-profile-menu > header strong { font-size: 15px; }
+  .mobile-profile-menu > header small { color: var(--muted); font-size: 11px; }
+  .mobile-profile-menu > header button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .mobile-profile-actions { display: grid; padding: 12px 16px; }
+  .mobile-profile-actions > button {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 11px;
+    min-height: 58px;
+    padding: 10px 8px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+  }
+  .mobile-profile-actions > button > span:nth-child(2) { display: grid; gap: 3px; }
+  .mobile-profile-actions > button small { color: var(--muted); font-size: 10px; }
+  .mobile-profile-actions > button b { color: var(--theme-accent-strong); font-size: 11px; }
+  .profile-menu-symbol { color: var(--theme-accent-strong); font-size: 18px; text-align: center; }
+  .profile-settings-future { opacity: .55; cursor: default !important; }
+  .mobile-display-setting,
+  .mobile-theme-setting {
+    display: grid;
+    gap: 10px;
+    padding: 15px 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-display-setting > div:first-child,
+  .mobile-theme-setting > div:first-child { display: flex; align-items: center; gap: 12px; }
+  .mobile-display-setting > div:first-child > span,
+  .mobile-theme-setting > div:first-child > span { width: 32px; color: var(--theme-accent-strong); font-size: 17px; text-align: center; }
+  .mobile-display-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .mobile-display-options button,
+  .mobile-theme-options button {
+    min-height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--canvas);
+    color: var(--muted);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .mobile-display-options button.active,
+  .mobile-theme-options button.active {
+    border-color: var(--theme-accent);
+    background: var(--theme-soft);
+    color: var(--theme-accent-strong);
+    box-shadow: inset 0 0 0 1px var(--theme-accent);
+  }
+  .mobile-theme-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .mobile-theme-options button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+  .mobile-theme-swatch { width: 13px; height: 13px; flex: 0 0 13px; border: 1px solid rgba(0,0,0,.12); border-radius: 50%; background: #77736c; }
+  .mobile-theme-swatch.lavender { background: #7755a6; }
+  .mobile-theme-swatch.sage { background: #4e7b60; }
+  .mobile-theme-swatch.slate { background: #52728f; }
+  .mobile-theme-swatch.ocean { background: #0284c7; }
+  .mobile-theme-swatch.indigo { background: #5b5bd6; }
+  .mobile-theme-swatch.fuchsia { background: #c0268a; }
+  .mobile-theme-swatch.teal { background: #0f8f8f; }
+  .mobile-theme-swatch.sky { background: #4f97c7; }
+  .mobile-theme-swatch.sand { background: #b7792e; }
+  .mobile-sign-out {
+    display: block;
+    margin: auto 16px 20px;
+    padding: 13px;
+    border: 1px solid color-mix(in srgb, var(--red) 38%, var(--line));
+    border-radius: 9px;
+    color: var(--red);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 750;
+  }
+
+  /* Keep hierarchy serials, names, and counts on one vertical centreline. */
+  .section-copy {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 6px;
+  }
+  .section-copy small { margin-bottom: 0; line-height: 1.2; }
+  .section-copy strong { line-height: 1.2; }
+  .section-main em { align-self: center; line-height: 1.2; }
+  .focus-filter-row > button > span:nth-child(2),
+  .focus-filter-row > button > em,
+  .focus-collapse-button > strong,
+  .focus-collapse-button > em { align-self: center; line-height: 1.2; }
+
+  .page-heading-row { align-items: stretch; }
+  .title-field-wrap { display: flex; align-items: flex-end; min-height: 46px; }
+  .page-title-input { align-self: flex-end; }
+  .outline-row [contenteditable] { tab-size: 4; }
+  /* Every desktop reminder uses the same app date picker; time stays independently editable. */
+  .ios-reminder-mobile-datetime { display: none; }
+  .ios-settings-date {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    gap: 7px;
+  }
+  .ios-reminder-desktop-datetime {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    width: calc(100% + 26px);
+    margin: 0 -13px -8px;
+  }
+  .ios-reminder-date-control,
+  .ios-reminder-time-control {
+    width: 100%;
+    height: 36px;
+    min-width: 0;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 8px;
+    background: #f2f2f7;
+    color: var(--theme-accent-strong);
+    font-size: 13px;
+  }
+  .ios-reminder-time-control { padding: 0 3px; }
+  .ios-reminder-desktop-datetime > :first-child { height: 44px; border-radius: 0; }
+  .ios-reminder-desktop-datetime > :last-child { height: 44px; border-radius: 0; }
+
+  /* Approved journal date cells. These selectors do not reach page updates. */
+  .task-facts {
+    grid-template-columns: repeat(3, 110px) minmax(112px, .75fr) minmax(120px, .8fr) minmax(180px, 1.2fr);
+  }
+  .task-facts > .date-fact .page-date-mobile-control { display: none; }
+  .task-facts > .date-fact .date-current-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 26px 18px;
+    align-items: start;
+    width: 100%;
+    max-width: 100%;
+    gap: 0;
+  }
+  .task-facts > .date-fact .date-value-button.page-date-desktop-control strong {
+    font-size: 11px;
+    font-weight: 650;
+  }
+  .task-facts > .date-fact .date-current-row > .clear-date-button {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+    justify-self: end;
+  }
+  .task-facts > .date-fact > .optional-date-button.page-date-desktop-control { min-height: 26px; }
+  .planner-card.focused .planner-schedule-row {
+    grid-template-columns: 118px 170px max-content minmax(134px, 1fr);
+    margin: 14px 0 12px;
+  }
+  .planner-card.focused .app-time-control {
+    grid-template-columns: minmax(38px, .8fr) 5px minmax(39px, .9fr) minmax(48px, 1.1fr);
+    padding-inline: 4px;
+  }
+  .planner-card.focused .planner-date-control { height: 36px; font-size: 12px; }
+  .planner-card.focused .planner-card-controls { gap: 7px; }
+  .outline-row > .inline-attachment-list.compact { grid-row: 2; }
+
+  /* Journal attachment options use the clearer My Day menu styling. */
+  .attachment-menu {
+    width: 228px;
+    max-height: calc(100dvh - 16px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 5px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 13px 34px rgba(32, 23, 41, .2);
+  }
+  .attachment-menu button {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 7px;
+    min-height: 0;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  .attachment-menu button:hover { background: color-mix(in srgb, var(--theme-accent) 8%, white); }
+  .attachment-menu button > span {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: transparent;
+    color: var(--theme-accent);
+    font-size: 18px;
+  }
+  .attachment-menu strong {
+    color: inherit;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .attachment-menu small {
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 9px;
+  }
+
+  /* App-wide graphite night system, matching the mobile presentation. */
+  body.journal-mobile-dark .app-shell {
+    --ink: #f2f2f7;
+    --muted: #aeaeb2;
+    --canvas: #000;
+    --panel: #1c1c1e;
+    --line: rgba(84, 84, 88, .62);
+    --line-strong: #48484a;
+    --red: #ff453a;
+    --green: #30d158;
+    --theme-header: #1c1c1e;
+    --theme-on-header: #f2f2f7;
+    --theme-accent: #aaa69d;
+    --theme-accent-strong: #c9c6bd;
+    --theme-on-accent: #111;
+    --theme-soft: #2c2c2e;
+    background: #000 !important;
+    color: var(--ink);
+    color-scheme: dark;
+  }
+  body.journal-mobile-dark .app-shell.theme-lavender { --theme-accent:#bf9ce0; --theme-accent-strong:#d2b8eb; }
+  body.journal-mobile-dark .app-shell.theme-sage { --theme-accent:#7fbd99; --theme-accent-strong:#a0d4b4; }
+  body.journal-mobile-dark .app-shell.theme-slate { --theme-accent:#8caccc; --theme-accent-strong:#aac3dc; }
+  body.journal-mobile-dark .app-shell.theme-ocean { --theme-accent:#4db4ff; --theme-accent-strong:#75c5ff; --theme-on-accent:#071521; }
+  body.journal-mobile-dark .app-shell.theme-indigo { --theme-accent:#9b94ff; --theme-accent-strong:#b7b2ff; }
+  body.journal-mobile-dark .app-shell.theme-fuchsia { --theme-accent:#e684c9; --theme-accent-strong:#efa8d8; --theme-on-accent:#1c0b18; }
+  body.journal-mobile-dark .app-shell.theme-teal { --theme-accent:#5ecbcb; --theme-accent-strong:#84dada; --theme-on-accent:#081616; }
+  body.journal-mobile-dark .app-shell.theme-sky { --theme-accent:#8dc5ea; --theme-accent-strong:#acd7f2; --theme-on-accent:#10171b; }
+  body.journal-mobile-dark .app-shell.theme-sand { --theme-accent:#d3a86d; --theme-accent-strong:#e1bf90; --theme-on-accent:#1a130a; }
+
+  body.journal-mobile-dark,
+  body.journal-mobile-dark :is(.app-main,.dashboard-view,.my-day-view,.day-planner-sheet,.view-with-title,.journal-mobile-shell,.meetings-layout,.meeting-workspace,.people-layout,.person-workspace) { background: #000 !important; color: var(--ink); }
+  body.journal-mobile-dark :is(.title-bar,.view-title-bar) { background: #1c1c1e !important; border-color: var(--line-strong) !important; color: var(--ink); }
+  body.journal-mobile-dark :is(.formatting-toolbar,.primary-tabs,.journal-notebook-bar,.my-day-control-bar) { background: #1c1c1e !important; border-color: var(--line) !important; color: var(--ink); }
+  body.journal-mobile-dark :is(
+    .dashboard-module,.department-strip,.planner-section,.planner-column,.planner-week-day,.meeting-list-pane,.meeting-toolbar,.meeting-sheet,
+    .people-list-pane,.person-metrics,.person-task-panel,.performance-panel,.page-editor,.page-frozen-pane,.hierarchy-pane,.page-list-pane,
+    .page-progress,.task-facts,.outline-row,.dashboard-hero,.dashboard-card,.calendar-pane
+  ) { background: var(--panel) !important; border-color: var(--line) !important; color: var(--ink); box-shadow: none; }
+  body.journal-mobile-dark :is(
+    .planner-card,.week-plan-item,.page-card,.task-row,.meeting-list>button,.people-list>button,.person-task-row,.agenda-lines label,
+    .discussion-action-grid>section,.meeting-general-notes label,.dashboard-stat,.dashboard-list-row
+  ) { background: #242426 !important; border-color: var(--line) !important; color: var(--ink); }
+  body.journal-mobile-dark :is(h1,h2,h3,h4,strong,.page-title-input,.section-copy,.dashboard-module-title,.planner-card-title) { color: var(--ink); }
+  body.journal-mobile-dark :is(small,.muted,.page-meta,.section-main em,.dashboard-caption,.planner-card label) { color: var(--muted) !important; }
+  body.journal-mobile-dark :is(input,select,textarea,[contenteditable="true"],.app-time-control,.planner-date-control,.date-value-button,.optional-date-button) {
+    background: #2c2c2e !important;
+    border-color: var(--line-strong) !important;
+    color: var(--ink) !important;
+  }
+  body.journal-mobile-dark :is(.primary-tabs button.active,.journal-step-tabs button.active,.view-switch button.active,.mobile-display-options button.active,.mobile-theme-options button.active) {
+    background: var(--theme-accent) !important;
+    border-color: var(--theme-accent) !important;
+    color: var(--theme-on-accent) !important;
+  }
+  body.journal-mobile-dark :is(a,.text-button,.inline-link,.page-card small,.page-card .serial,.outline-row a) { color: var(--theme-accent-strong); }
+  body.journal-mobile-dark :is(.add-section-button,.add-page-button,.primary-action,.save-button) {
+    background: var(--theme-accent) !important;
+    border-color: var(--theme-accent) !important;
+    color: var(--theme-on-accent) !important;
+  }
+  body.journal-mobile-dark :is(.completed,.completed-count,.success,.saved) { color: var(--green) !important; }
+  body.journal-mobile-dark :is(.overdue,.danger,.delete-button) { color: var(--red) !important; }
+
+  body.journal-mobile-dark :is(
+    .context-menu,.page-menu,.section-menu,.attachment-menu,.inline-media-menu,.supporting-menu,.entry-modal,.move-modal,.planner-add-modal,
+    .planner-journal-modal,.date-confirmation-card,.private-editor-panel,.ios-reminder-sheet,.ios-reminder-modal,.modal-card,.search-results
+  ) {
+    background: #242426 !important;
+    border-color: var(--line-strong) !important;
+    color: var(--ink) !important;
+    box-shadow: 0 18px 50px rgba(0,0,0,.56) !important;
+  }
+  body.journal-mobile-dark :is(
+    .context-menu button,.page-menu button,.section-menu button,.attachment-menu button,.inline-media-menu button,.supporting-menu button,
+    .search-results button,.modal-card button
+  ) { background: transparent; border-color: var(--line) !important; color: var(--ink) !important; }
+  body.journal-mobile-dark :is(
+    .context-menu button:hover,.page-menu button:hover,.section-menu button:hover,.attachment-menu button:hover,.inline-media-menu button:hover,
+    .supporting-menu button:hover,.search-results button:hover
+  ) { background: color-mix(in srgb, var(--theme-accent) 18%, #242426) !important; }
+  body.journal-mobile-dark :is(.date-picker-popover,.react-datepicker,.calendar-popover) { background: #242426 !important; border-color: var(--line-strong) !important; color: var(--ink) !important; }
+  body.journal-mobile-dark :is(.ios-reminder-date-control,.ios-reminder-time-control) { background:#2c2c2e !important; color:var(--theme-accent-strong) !important; }
+
+  body.journal-mobile-dark .mobile-profile-backdrop { background: rgba(0,0,0,.52); }
+  body.journal-mobile-dark .mobile-profile-menu { background: #1c1c1e; border-color: var(--line-strong); color: var(--ink); }
+  body.journal-mobile-dark .mobile-profile-menu > header { border-color: var(--line); }
+  body.journal-mobile-dark .mobile-profile-menu > header > span { background:#2c2c2e; color:var(--theme-accent-strong); }
+  body.journal-mobile-dark :is(.mobile-display-options button,.mobile-theme-options button) { background:#2c2c2e; border-color:var(--line-strong); color:var(--muted); }
+  body.journal-mobile-dark .mobile-sign-out { background:#242426; }
+
+  /* Desktop night-mode refinement from the full-screen review. */
+  body.journal-mobile-dark .app-shell :is(.formatting-ribbon,.tab-bar) {
+    border-color: var(--line-strong) !important;
+    background: #1c1c1e !important;
+    color: var(--ink) !important;
+    box-shadow: none !important;
+  }
+  body.journal-mobile-dark .app-shell .ribbon-group { border-color: var(--line) !important; }
+  body.journal-mobile-dark .app-shell .ribbon-group :is(button,select),
+  body.journal-mobile-dark .app-shell .color-tool {
+    border-color: transparent !important;
+    background: transparent !important;
+    color: #d1d1d6 !important;
+  }
+  body.journal-mobile-dark .app-shell .ribbon-group select {
+    border-color: var(--line-strong) !important;
+    background: #2c2c2e !important;
+    color: #f2f2f7 !important;
+  }
+  body.journal-mobile-dark .app-shell .ribbon-group :is(button,.color-tool):hover:not(:disabled) {
+    border-color: var(--line-strong) !important;
+    background: #3a3a3c !important;
+    color: #fff !important;
+  }
+  body.journal-mobile-dark .app-shell .ribbon-hint { background:#2c2c2e !important; color:#aeaeb2 !important; }
+  body.journal-mobile-dark .app-shell .tab-bar > button { background:transparent !important; color:#aeaeb2 !important; }
+  body.journal-mobile-dark .app-shell .tab-bar > button:hover { background:#2c2c2e !important; color:#fff !important; }
+  body.journal-mobile-dark .app-shell .tab-bar > button.active {
+    border-color: var(--theme-accent) !important;
+    background: var(--theme-accent) !important;
+    color: var(--theme-on-accent) !important;
+  }
+
+  body.journal-mobile-dark .app-shell :is(
+    .dashboard-module-heading,.dashboard-wide-link,.dashboard-preview-list>button,.dashboard-date-tile,
+    .planner-calendar,.planner-column-heading,.planner-card-summary-schedule,.planner-schedule-row input,
+    .show-completed-button,.week-day-heading,.month-board-grid>section,.select-box,.panel-heading,
+    .person-metrics>div,.person-task-row,.performance-lines p
+  ) {
+    border-color: var(--line) !important;
+    background: var(--panel) !important;
+    color: var(--ink) !important;
+  }
+  body.journal-mobile-dark .app-shell :is(.dashboard-module-heading>button,.print-page-button,.page-reminder-button,.page-tool-button) {
+    border-color: var(--line-strong) !important;
+    background: #2c2c2e !important;
+    color: var(--theme-accent-strong) !important;
+  }
+  body.journal-mobile-dark .app-shell :is(.dashboard-module-heading h2,.dashboard-stat-grid strong,.dashboard-preview-list strong,.dashboard-wide-link span) {
+    color: var(--ink) !important;
+  }
+  body.journal-mobile-dark .app-shell :is(.dashboard-stat-grid span,.dashboard-preview-list small,.dashboard-wide-link) { color:var(--muted) !important; }
+  body.journal-mobile-dark .app-shell .dashboard-wide-link b { color:var(--theme-accent-strong) !important; }
+  body.journal-mobile-dark .app-shell .dashboard-date-tile { background:#2c2c2e !important; }
+  body.journal-mobile-dark .app-shell .dashboard-kind { background:#3a3a3c !important; color:var(--theme-accent-strong) !important; }
+  body.journal-mobile-dark .app-shell .dashboard-kind.email { color:#63e6a6 !important; }
+
+  body.journal-mobile-dark .app-shell .my-day-control-bar {
+    border-color: var(--line) !important;
+    background: #000 !important;
+  }
+  body.journal-mobile-dark .app-shell .my-day-control-bar :is(.planner-view-switch,.selected-day-navigation) {
+    border-color: var(--line-strong) !important;
+    background: #1c1c1e !important;
+    box-shadow: none !important;
+  }
+  body.journal-mobile-dark .app-shell .my-day-control-bar :is(.planner-view-switch,.selected-day-navigation) button {
+    border-color: var(--line-strong) !important;
+    background: transparent !important;
+    color: #aeaeb2 !important;
+  }
+  body.journal-mobile-dark .app-shell .my-day-control-bar .planner-view-switch button.active {
+    border-color: #636366 !important;
+    background: #3a3a3c !important;
+    color: #fff !important;
+  }
+  body.journal-mobile-dark .app-shell .my-day-control-bar .selected-day-navigation .today-button {
+    background:#2c2c2e !important;
+    color:#fff !important;
+  }
+  body.journal-mobile-dark .app-shell .my-day-control-bar .selected-day-navigation button:not(.today-button) { color:var(--theme-accent-strong) !important; }
+  body.journal-mobile-dark .app-shell .planner-calendar { background:#1c1c1e !important; }
+  body.journal-mobile-dark .app-shell .planner-calendar :is(.calendar-heading strong,.calendar-weekdays span) { color:#d1d1d6 !important; }
+  body.journal-mobile-dark .app-shell .calendar-grid button { background:transparent !important; color:#d1d1d6 !important; }
+  body.journal-mobile-dark .app-shell .calendar-grid button:hover { background:#2c2c2e !important; }
+  body.journal-mobile-dark .app-shell .calendar-grid button.selected { background:var(--theme-accent) !important; color:var(--theme-on-accent) !important; }
+  body.journal-mobile-dark .app-shell .calendar-grid button.outside { color:#636366 !important; }
+  body.journal-mobile-dark .app-shell .planner-column { background:#1c1c1e !important; }
+  body.journal-mobile-dark .app-shell .planner-column-heading { background:#242426 !important; }
+  body.journal-mobile-dark .app-shell .planner-column-heading>span { background:#3a3a3c !important; color:var(--theme-accent-strong) !important; }
+  body.journal-mobile-dark .app-shell .planner-column-heading em { background:#3a3a3c !important; color:#d1d1d6 !important; }
+  body.journal-mobile-dark .app-shell .planner-card { background:#242426 !important; }
+  body.journal-mobile-dark .app-shell .planner-card-title { background:transparent !important; color:#f2f2f7 !important; -webkit-text-fill-color:#f2f2f7 !important; }
+  body.journal-mobile-dark .app-shell .planner-complete-button { border-color:#636366 !important; background:#2c2c2e !important; color:transparent !important; }
+  body.journal-mobile-dark .app-shell .show-completed-button { background:#2c2c2e !important; color:#aeaeb2 !important; }
+
+  body.journal-mobile-dark .app-shell .task-facts {
+    border-color: var(--line-strong) !important;
+    background: #1c1c1e !important;
+  }
+  body.journal-mobile-dark .app-shell .task-facts>:is(label,.fact-block,.date-fact) { border-color:var(--line) !important; }
+  body.journal-mobile-dark .app-shell .task-facts span:first-child { color:#aeaeb2 !important; }
+  body.journal-mobile-dark .app-shell .task-facts :is(input,select,textarea,.fact-select-control,.supporting-picker-button) {
+    background: transparent !important;
+    color: #f2f2f7 !important;
+    -webkit-text-fill-color: #f2f2f7 !important;
+  }
+  body.journal-mobile-dark .app-shell .page-title-input,
+  body.journal-mobile-dark .app-shell .outline-row [contenteditable] {
+    border-color: transparent !important;
+    border-bottom-color: #38383a !important;
+    background: transparent !important;
+    color: #f2f2f7 !important;
+    -webkit-text-fill-color: #f2f2f7 !important;
+  }
+  body.journal-mobile-dark .app-shell .select-box { background:#242426 !important; }
+  body.journal-mobile-dark .app-shell .select-box>span { color:#aeaeb2 !important; }
+  body.journal-mobile-dark .app-shell .select-box select { background:#2c2c2e !important; color:#f2f2f7 !important; }
+
+  body.journal-mobile-dark .app-shell :is(.person-avatar,.mini-avatar,.large-avatar) {
+    border-color: #636366 !important;
+    background: #3a3a3c !important;
+    color: #f2f2f7 !important;
+    box-shadow: none !important;
+  }
+  body.journal-mobile-dark .app-shell .people-list em { background:#3a3a3c !important; color:#d1d1d6 !important; }
+  body.journal-mobile-dark .app-shell .people-list>button.selected { border-color:#48484a !important; background:#2c2c2e !important; box-shadow:inset 3px 0 0 var(--theme-accent) !important; }
+  body.journal-mobile-dark .app-shell .manage-people-button {
+    border-color: var(--theme-accent) !important;
+    background: var(--theme-accent) !important;
+    color: var(--theme-on-accent) !important;
+  }
+  body.journal-mobile-dark .app-shell .completion-ring { background:conic-gradient(var(--theme-accent) var(--completion),#38383a 0) !important; }
+  body.journal-mobile-dark .app-shell .completion-ring::before { background:#1c1c1e !important; }
+  body.journal-mobile-dark .app-shell .performance-lines strong { color:#f2f2f7 !important; }
+
+  body.journal-mobile-dark :is(.modal-backdrop,.ios-reminder-backdrop,.planner-focus-backdrop) {
+    background:rgba(0,0,0,.72) !important;
+    backdrop-filter:blur(16px) saturate(.86) !important;
+  }
+  body.journal-mobile-dark .ios-reminder-sheet {
+    border-color:#48484a !important;
+    background:#1c1c1e !important;
+    color:#f2f2f7 !important;
+    box-shadow:0 30px 90px rgba(0,0,0,.82) !important;
+  }
+  body.journal-mobile-dark .ios-reminder-header { border-color:#48484a !important; background:rgba(36,36,38,.96) !important; color:#f2f2f7 !important; }
+  body.journal-mobile-dark .ios-reminder-header button { color:var(--theme-accent) !important; }
+  body.journal-mobile-dark .ios-reminder-scroll { background:#1c1c1e !important; }
+  body.journal-mobile-dark :is(.ios-reminder-title strong,.ios-settings-group b) { color:#f2f2f7 !important; }
+  body.journal-mobile-dark :is(.ios-reminder-title small,.ios-settings-label,.ios-settings-group small) { color:#aeaeb2 !important; }
+  body.journal-mobile-dark .ios-settings-group { border-color:#48484a !important; background:#242426 !important; }
+  body.journal-mobile-dark :is(.ios-settings-date,.ios-end-repeat-row,.ios-quick-row,.ios-repeat-list button,.ios-clear-end,.ios-danger-group button) {
+    border-color:#48484a !important;
+    background:#242426 !important;
+    color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark :is(.ios-settings-date input,.ios-end-repeat-row input,.ios-end-date-control,.ios-reminder-date-control,.ios-reminder-time-control) {
+    border-color:#48484a !important;
+    background:#2c2c2e !important;
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark .ios-quick-row button { border-color:var(--theme-accent) !important; background:var(--theme-accent) !important; color:var(--theme-on-accent) !important; }
+  body.journal-mobile-dark .ios-repeat-list button.selected { background:color-mix(in srgb,var(--theme-accent) 16%,#242426) !important; }
+  body.journal-mobile-dark .ios-repeat-list button.selected :is(b,i) { color:var(--theme-accent) !important; }
+
+  body.journal-mobile-dark .app-date-mobile-backdrop { background:rgba(0,0,0,.74) !important; backdrop-filter:blur(16px) !important; }
+  body.journal-mobile-dark .app-date-popover { border-color:#48484a !important; background:#242426 !important; color:#f2f2f7 !important; color-scheme:dark; }
+  body.journal-mobile-dark .app-date-popover header strong { color:#f2f2f7 !important; }
+  body.journal-mobile-dark .app-date-weekdays span { color:#aeaeb2 !important; }
+  body.journal-mobile-dark .app-date-grid button { color:#f2f2f7 !important; }
+  body.journal-mobile-dark .app-date-grid button:hover:not(:disabled) { background:#3a3a3c !important; }
+  body.journal-mobile-dark .app-date-grid button.selected { background:var(--theme-accent) !important; color:var(--theme-on-accent) !important; }
+  body.journal-mobile-dark .app-date-grid button.outside { color:#636366 !important; }
+
+  /* The expanded My Day task is a real night-mode work surface, not a light
+     card laid over a dark backdrop. */
+  body.journal-mobile-dark .planner-card.focused {
+    border-color:#48484a !important;
+    background:#242426 !important;
+    color:#f2f2f7 !important;
+    box-shadow:0 30px 90px rgba(0,0,0,.8) !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .planner-focus-heading {
+    border-color:#48484a !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .planner-focus-heading p {
+    color:#d1d1d6 !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .planner-focus-heading > div > span {
+    background:#2c2c2e !important;
+    color:var(--theme-accent) !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .planner-focus-heading > button,
+  body.journal-mobile-dark .planner-card.focused :is(.inline-media-button,.planner-reminder-setting),
+  body.journal-mobile-dark .planner-card.focused .planner-card-actions button {
+    border-color:#48484a !important;
+    background:#2c2c2e !important;
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+    box-shadow:none !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .planner-focus-heading > button:hover,
+  body.journal-mobile-dark .planner-card.focused .planner-card-actions button:hover {
+    border-color:var(--theme-accent) !important;
+    background:color-mix(in srgb,var(--theme-accent) 16%,#2c2c2e) !important;
+    color:var(--theme-accent-strong) !important;
+    -webkit-text-fill-color:var(--theme-accent-strong) !important;
+  }
+  body.journal-mobile-dark .planner-card.focused :is(input,select,textarea,.planner-date-control,.app-time-control,.postpone-date-control) {
+    border-color:#48484a !important;
+    background:#2c2c2e !important;
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+    color-scheme:dark;
+    box-shadow:none !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .app-time-control select {
+    border:0 !important;
+    background:transparent !important;
+  }
+  body.journal-mobile-dark .planner-card.focused :is(.planner-schedule-field,.planner-time-field,.planner-assignee-field) > span {
+    color:#aeaeb2 !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .planner-card-title,
+  body.journal-mobile-dark .planner-card.focused .day-detail-row > textarea {
+    border-color:transparent !important;
+    border-bottom-color:#48484a !important;
+    background:transparent !important;
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .planner-card-progress {
+    border-color:#48484a !important;
+    background:#1c1c1e !important;
+    color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark .planner-card.focused .planner-card-progress > span,
+  body.journal-mobile-dark .planner-card.focused .planner-card-meta { color:#aeaeb2 !important; }
+  body.journal-mobile-dark .planner-card.focused .planner-card-progress > div { background:#38383a !important; }
+  body.journal-mobile-dark .planner-card.focused .planner-card-progress > strong { color:#f2f2f7 !important; }
+  body.journal-mobile-dark .planner-card.focused .planner-card-actions button:first-child {
+    border-color:var(--theme-accent) !important;
+    color:var(--theme-accent-strong) !important;
+    -webkit-text-fill-color:var(--theme-accent-strong) !important;
+  }
+
+  /* Keep the private editor drawer in the same graphite hierarchy as the
+     Journal workspace, including its header, results and footer. */
+  body.journal-mobile-dark .app-shell .private-editor-panel,
+  body.journal-mobile-dark .app-shell :is(.private-editor-heading,.private-editor-tabs,.private-editor-actions,.private-editor-panel footer) {
+    border-color:#48484a !important;
+    background:#1c1c1e !important;
+    color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark .app-shell .private-editor-heading { background:#1c1c1e !important; }
+  body.journal-mobile-dark .app-shell :is(.private-editor-card,.private-editor-location,.private-editor-scope button,.private-editor-dictionary input,.dictionary-word-list > div) {
+    border-color:#48484a !important;
+    background:#242426 !important;
+    color:#f2f2f7 !important;
+    box-shadow:none !important;
+  }
+  body.journal-mobile-dark .app-shell :is(.private-editor-heading h2,.private-editor-tabs button.active,.private-editor-state strong,.private-editor-context,.dictionary-word-list > div) {
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark .app-shell :is(.private-editor-heading p,.private-editor-location b,.private-editor-message,.private-editor-dictionary > p,.private-editor-panel footer small,.private-editor-tabs button) {
+    color:#aeaeb2 !important;
+    -webkit-text-fill-color:#aeaeb2 !important;
+  }
+  body.journal-mobile-dark .app-shell .private-editor-tabs button.active {
+    border-bottom-color:var(--theme-accent) !important;
+    color:var(--theme-accent-strong) !important;
+    -webkit-text-fill-color:var(--theme-accent-strong) !important;
+  }
+  body.journal-mobile-dark .app-shell .private-editor-scope button.active {
+    border-color:var(--theme-accent) !important;
+    background:color-mix(in srgb,var(--theme-accent) 16%,#242426) !important;
+    color:var(--theme-accent-strong) !important;
+  }
+  body.journal-mobile-dark .app-shell .private-editor-suggestions button:not(.preferred) {
+    border-color:#48484a !important;
+    background:#2c2c2e !important;
+    color:var(--theme-accent-strong) !important;
+  }
+  body.journal-mobile-dark .app-shell .private-editor-state {
+    border-color:#48484a !important;
+    background:#242426 !important;
+    color:#aeaeb2 !important;
+  }
+  body.journal-mobile-dark .app-shell .private-editor-heading > button:hover {
+    background:#3a3a3c !important;
+    color:#fff !important;
+  }
+
+  /* Meeting worksheet headings and action areas no longer flash white inside
+     the otherwise dark meeting sheet. */
+  body.journal-mobile-dark .app-shell :is(.form-section,.form-section-heading,.meeting-meta-grid,.participants-grid,.agenda-lines) {
+    border-color:#48484a !important;
+    background:#1c1c1e !important;
+    color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark .app-shell :is(.meeting-meta-grid label,.participants-grid label,.agenda-lines label,.discussion-action-grid > section,.meeting-general-notes label) {
+    border-color:#48484a !important;
+    background:#242426 !important;
+    color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark .app-shell .form-section-heading :is(h2,strong) { color:#f2f2f7 !important; }
+  body.journal-mobile-dark .app-shell .form-section-heading :is(p,span),
+  body.journal-mobile-dark .app-shell .action-section > p { color:#aeaeb2 !important; }
+  body.journal-mobile-dark .app-shell :is(.discussion-action-grid textarea,.meeting-general-notes textarea) {
+    border-color:#48484a !important;
+    background:#242426 !important;
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+    box-shadow:none !important;
+  }
+  body.journal-mobile-dark .app-shell .agenda-lines label.selected {
+    background:color-mix(in srgb,var(--theme-accent) 14%,#242426) !important;
+    box-shadow:inset 3px 0 0 var(--theme-accent) !important;
+  }
+  body.journal-mobile-dark .app-shell :is(.link-task-button,.linked-task-button,.agenda-lines label > button) {
+    border-color:var(--theme-accent) !important;
+    background:#2c2c2e !important;
+    color:var(--theme-accent-strong) !important;
+  }
+
+  /* Final desktop theme pass: keep the search field, popovers, pane dividers
+     and native pickers in the same palette as the active theme. */
+  body.journal-mobile-dark .app-shell .global-search-wrap {
+    border-color:color-mix(in srgb,var(--theme-accent) 58%,#48484a) !important;
+    background:#2c2c2e !important;
+    color:#f2f2f7 !important;
+    box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--theme-accent) 16%,transparent) !important;
+  }
+  body.journal-mobile-dark .app-shell .global-search-wrap :is(.icon,input) {
+    background:transparent !important;
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark .app-shell .global-search-wrap input::placeholder {
+    color:#aeaeb2 !important;
+    -webkit-text-fill-color:#aeaeb2 !important;
+  }
+
+  body.journal-mobile-dark .app-shell .pane-resizer {
+    border-color:#38383a !important;
+    background:#1c1c1e !important;
+  }
+  body.journal-mobile-dark .app-shell .pane-resizer::after {
+    background:var(--theme-accent) !important;
+    opacity:.42;
+  }
+  body.journal-mobile-dark .app-shell :is(.hierarchy-pane,.page-list-pane,.page-editor,.page-frozen-pane,.pane-title-row,.page-list-scroll) {
+    border-color:#38383a !important;
+  }
+
+  body.journal-mobile-dark :is(
+    .context-menu,.inline-media-menu,.attachment-menu,.supporting-menu,.outline-reminder-popover,
+    .search-results,.date-confirmation-card,.move-modal,.supporting-people-modal,.team-manager-modal,
+    .planner-add-modal,.planner-journal-modal,.entry-modal,.private-editor-panel,.ios-reminder-sheet
+  ) {
+    border-color:#48484a !important;
+    background:#242426 !important;
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+    color-scheme:dark;
+  }
+  body.journal-mobile-dark :is(
+    .context-menu,.inline-media-menu,.attachment-menu,.supporting-menu,.outline-reminder-popover,
+    .search-results,.date-confirmation-card,.move-modal,.supporting-people-modal,.team-manager-modal,
+    .planner-add-modal,.planner-journal-modal,.entry-modal,.private-editor-panel,.ios-reminder-sheet
+  ) :is(button,strong,b,label,p,small,span,div) {
+    -webkit-text-fill-color:currentColor;
+  }
+  body.journal-mobile-dark :is(.context-menu,.inline-media-menu,.attachment-menu,.search-results) button {
+    background:transparent !important;
+    color:#f2f2f7 !important;
+  }
+  body.journal-mobile-dark :is(.context-menu,.inline-media-menu,.attachment-menu,.search-results) button > span:first-child,
+  body.journal-mobile-dark :is(.attachment-menu,.inline-media-menu) .icon {
+    color:var(--theme-accent-strong) !important;
+    -webkit-text-fill-color:var(--theme-accent-strong) !important;
+  }
+  body.journal-mobile-dark :is(.context-menu,.inline-media-menu,.attachment-menu,.search-results) button:is(:hover,:focus-visible,.active) {
+    background:color-mix(in srgb,var(--theme-accent) 18%,#242426) !important;
+  }
+
+  body.journal-mobile-dark :is(
+    .app-theme-menu select,.app-time-control,.app-time-control select,.planner-assignee-field select,
+    .fact-select-control,.fact-select-control select,.supporting-picker-button,.move-fields select,
+    .planner-add-modal select,.planner-journal-modal select,.team-manager-modal select
+  ) {
+    border-color:#48484a !important;
+    background:#2c2c2e !important;
+    color:#f2f2f7 !important;
+    -webkit-text-fill-color:#f2f2f7 !important;
+    color-scheme:dark;
+  }
+  body.journal-mobile-dark :is(select,option,optgroup) {
+    background:#2c2c2e;
+    color:#f2f2f7;
+    color-scheme:dark;
+  }
+
+  .app-shell :is(
+    .primary-button,.add-section-bottom,.add-page-bottom,.manage-people-button,
+    .dashboard-module-heading > button,.journal-title-notebook > button
+  ) {
+    border-color:var(--theme-accent) !important;
+    background:var(--theme-accent) !important;
+    color:var(--theme-on-accent) !important;
+    box-shadow:none !important;
+  }
+  .app-shell :is(
+    .primary-button,.add-section-bottom,.add-page-bottom,.manage-people-button,
+    .dashboard-module-heading > button,.journal-title-notebook > button
+  ):is(:hover,:focus-visible) {
+    border-color:var(--theme-header) !important;
+    background:var(--theme-header) !important;
+    color:#fff !important;
+  }
+  .app-shell :is(.dashboard-module-heading > button,.journal-title-notebook > button) span {
+    color:inherit !important;
+  }
+  .app-shell :is(.page-tool-button,.planner-reminder-setting,.manage-team-link,.add-day-detail) {
+    border-color:color-mix(in srgb,var(--theme-accent) 55%,var(--line-strong)) !important;
+    color:var(--theme-accent) !important;
+  }
+}
